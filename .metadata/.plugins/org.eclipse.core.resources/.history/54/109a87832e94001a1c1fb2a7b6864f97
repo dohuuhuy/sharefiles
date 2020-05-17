@@ -1,0 +1,13 @@
+package Socket;
+
+public class databaseServer {
+    
+    public String filePath;
+    
+    public databaseServer(String filePath){
+        this.filePath = filePath;
+    }
+    
+ 
+ 
+}

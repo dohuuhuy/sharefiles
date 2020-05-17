@@ -1,0 +1,87 @@
+package FileMoi;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+public class FileCtrl implements Initializable {
+
+	@FXML
+	private AnchorPane anchorPane;
+	@FXML
+	private ResourceBundle resources;
+
+	@FXML
+	private URL location;
+
+	@FXML
+	private JFXComboBox<?> toWho;
+
+	@FXML
+	private JFXButton btnSend;
+
+	@FXML
+	private JFXTextArea txtNoiDung;
+
+	@FXML
+	private JFXTextField txtDiaChi;
+
+	@FXML
+	private JFXTextField txtTieuDe;
+
+	@FXML
+	private JFXButton btnChonTep;
+
+	 ObservableList<String> listToWho = FXCollections.observableArrayList("Java", "C#", "Python");
+	 
+	@FXML
+	void actionClose(ActionEvent event) {
+		System.exit(0);
+	}
+
+	@FXML
+	void actionReturn(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnSave(ActionEvent event) {
+
+	}
+
+	@FXML
+	private void actionChonTep(ActionEvent event) {
+		final FileChooser fileChooser = new FileChooser();
+		Stage stage = (Stage) anchorPane.getScene().getWindow();
+		File file = fileChooser.showOpenDialog(stage);
+		if (file != null) {
+			System.out.println(file.getAbsolutePath());
+			txtDiaChi.setText(file.getAbsolutePath());
+		}
+	}
+	@FXML
+	 public void comboBoxChanged (ActionEvent event){
+		//toWho.setText( toWho.getValue());
+	    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		toWho.setItems(listToWho);
+	}
+
+}

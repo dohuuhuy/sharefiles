@@ -1,0 +1,29 @@
+.text-input{
+	 -fx-text-fill : white ;
+}
+
+
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label {
+    -fx-fill: #8b4513;
+    -fx-font-size: 1em;
+} 
+.chart-legend {
+    -fx-background-color:  #fafad2;
+   
+}
+
+.right
+{
+    -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
+}
+
+.jfx-hamburger {
+ 
+
+
+}

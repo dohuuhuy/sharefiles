@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="302.0" prefWidth="367.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TaiKhoan.TaiKhoanCtrl">
+   <children>
+      <Label fx:id="isConnected" layoutY="35.0" prefHeight="46.0" prefWidth="367.0" text="Status" textFill="#cd1313">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="54.0" layoutY="108.0" promptText="User Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <PasswordField  layoutX="54.0" layoutY="157.0" promptText="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="103.0" layoutY="216.0" mnemonicParsing="false" onAction="#Login" text="Login">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

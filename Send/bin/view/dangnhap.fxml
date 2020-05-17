@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TaiKhoan.TaiKhoanCtrl">
+   <children>
+      <Pane layoutX="550.0" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: black; -fx-background-radius: 20;">
+         <children>
+            <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="83.0" layoutY="228.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE" />
+            <JFXPasswordField fx:id="txtPassword" focusColor="WHITE" layoutX="83.0" layoutY="327.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE" />
+            <JFXButton layoutX="133.0" layoutY="42.0" ripplerFill="WHITE" style="-fx-background-color: CornflowerBlue; -fx-background-radius: 5;" text="Đăng Nhập" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="207.0" layoutY="42.0" ripplerFill="WHITE" style="-fx-background-color: HotPink; -fx-background-radius: 5;" text="Đăng Ký" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="81.0" layoutY="183.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="285.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="169.0" layoutY="391.0" onAction="#Login" ripplerFill="WHITE" style="-fx-background-color: CornflowerBlue;" text="Go Home" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Text fill="WHITE" layoutX="110.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Design and made by HuYi @2020">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="btnClose" layoutX="304.0" onAction="#Close" prefHeight="35.0" prefWidth="46.0" ripplerFill="WHITE" style="-fx-background-color: transparent;" text="X" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txtPort" alignment="CENTER" focusColor="WHITE" layoutX="77.0" layoutY="124.0" prefHeight="25.0" prefWidth="67.0" promptText="Port" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE" />
+            <Label fx:id="isConnected" alignment="CENTER" layoutX="88.0" layoutY="447.0" prefHeight="18.0" prefWidth="239.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="168.0" layoutY="124.0" onAction="#Login" ripplerFill="WHITE" style="-fx-background-color: CornflowerBlue;" text="Connect" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #448dc4; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="480.0" fitWidth="600.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../data/image/send-large-files-online.jpg" />
+               </image>
+            </ImageView>
+            <Pane layoutY="-2.0" prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #65c4c6; -fx-background-radius: 20 20 0 0;">
+               <children>
+                  <Text fill="WHITE" layoutX="193.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Share File" textAlignment="CENTER" wrappingWidth="214.3603515625">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="32.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutY="519.0" prefHeight="81.0" prefWidth="600.0" style="-fx-background-color: #687787; -fx-background-radius: 0 0 20 20;">
+               <children>
+                  <Text fill="WHITE" layoutX="164.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="And Security..." textAlignment="CENTER" wrappingWidth="272.7603759765625">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="32.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,133 @@
+package Home;
+
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXHamburger;
+import com.sun.javafx.logging.Logger;
+
+import TaiKhoan.DangNhap;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class HomeCtrl implements Initializable {
+
+	@FXML
+	private Pane paneView;
+	@FXML
+	private Button btnClose;
+	@FXML
+
+	public DangNhap DangNhap = new DangNhap();
+
+	@Override
+	public void initialize(java.net.URL location, ResourceBundle resources) {
+
+		loadData();
+
+		btnClose.setOnMouseClicked(e -> {
+			System.exit(0);
+		});
+
+	}
+
+	private void loadData() {
+		paneView.getChildren().clear();
+		ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
+		list.add(new PieChart.Data("File đến", 7));
+		list.add(new PieChart.Data("File đi", 2));
+		list.add(new PieChart.Data("File nháp", 1));
+		PieChart milkChart = new PieChart(list);
+		paneView.getChildren().add(milkChart);
+
+	}
+
+	@FXML
+	private Label userLbl;
+
+	public void GetUser(String user) {
+		// TODO Auto-generated method stub
+		userLbl.setText(user);
+	}
+
+	public void SignOut(ActionEvent event) {
+		try {
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Stage stage = new Stage();
+			DangNhap.start(stage);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@FXML
+    private BorderPane body;
+
+    @FXML
+    private AnchorPane content;
+
+    @FXML
+    private VBox sidebar;
+
+    @FXML
+    void actionChinhSach(ActionEvent event) {
+    	loadUI("chinhsach");
+    }
+
+    @FXML
+    void actionFileDi(ActionEvent event) {
+    	loadUI("filedi");
+    }
+
+    @FXML
+    void actionFileNhap(ActionEvent event) {
+    	loadUI("filenhap");
+    }
+
+    @FXML
+    void actionFileToi(ActionEvent event) {
+    	loadUI("a");
+    }
+
+    @FXML
+    void actionHome(ActionEvent event) {
+    	body.setCenter(content);
+    }
+
+    @FXML
+    void actionHuongDan(ActionEvent event) {
+    	loadUI("huongdan");
+    }
+
+    @FXML
+    void actionTaoMoi(ActionEvent event) {
+    	loadUI("a");
+    }
+
+
+	private void loadUI(String ui) {
+		Parent rootParent = null;
+		try {
+			rootParent = FXMLLoader.load(getClass().getResource("/view/" + ui + ".fxml"));
+		} catch (Exception e) {
+
+		}
+		body.setCenter(rootParent);
+	}
+
+}

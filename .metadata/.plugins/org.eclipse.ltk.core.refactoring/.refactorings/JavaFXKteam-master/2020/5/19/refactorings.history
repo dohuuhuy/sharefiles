@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;sample.Main19&apos; to &apos;Send/controller&apos;&#x0D;&#x0A;- Original project: &apos;JavaFXKteam-master&apos;&#x0D;&#x0A;- Destination element: &apos;Send/controller&apos;&#x0D;&#x0A;- Original element: &apos;JavaFXKteam-master/src/sample.Main19&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=Send/controller" element1="/src&lt;sample.Main19" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1588869219560" version="1.0"/>
+</session>
