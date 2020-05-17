@@ -59,35 +59,42 @@ public class FileMoiCtrl implements Initializable {
 	ObservableList<String> listToWho = FXCollections.observableArrayList("Java", "C#", "Python");
 
 	@FXML
-	void actionClose(ActionEvent event) {
+	void actionClose(final ActionEvent event) {
 		System.exit(0);
 	}
 
+	/*
+	 * private double xOffset = 0; private double yOffset = 0;
+	 */
 	@FXML
-	void actionReturn(ActionEvent event) {
-		try {	
-		Stage stage = new Stage();	
-		Parent root = FXMLLoader.load(getClass().getResource("../view/home.fxml"));
-		stage.initStyle(StageStyle.TRANSPARENT);
-		Scene scene = new Scene(root);
-		scene.setFill(Color.TRANSPARENT);
-		stage.setScene(scene);
-		stage.show();
-		} catch (Exception e) {
-			
-		}
+	void actionReturn(final ActionEvent event) {
+	/*
+	 * try { ((Node) event.getSource()).getScene().getWindow().hide(); final Stage
+	 * stage = new Stage(); final Parent root =
+	 * FXMLLoader.load(getClass().getResource("../view/home.fxml"));
+	 * stage.initStyle(StageStyle.TRANSPARENT); root.setOnMousePressed(ev -> {
+	 * xOffset = ev.getSceneX(); yOffset = ev.getSceneY(); });
+	 * 
+	 * root.setOnMouseDragged(ev -> { stage.setX(ev.getScreenX() - xOffset);
+	 * stage.setY(ev.getScreenY() - yOffset); });
+	 * 
+	 * 
+	 * final Scene scene = new Scene(root); scene.setFill(Color.TRANSPARENT);
+	 * stage.setScene(scene); stage.show(); } catch (final Exception e) {
+	 * 
+	 * } 
+	 */
+}
+	@FXML
+	void btnSave(final ActionEvent event) {
+
 	}
 
 	@FXML
-	void btnSave(ActionEvent event) {
-
-	}
-
-	@FXML
-	public void actionChonTep(ActionEvent event) {
+	public void actionChonTep(final ActionEvent event) {
 		final FileChooser fileChooser = new FileChooser();
-		Stage stage = (Stage) anchorPane.getScene().getWindow();
-		File file = fileChooser.showOpenDialog(stage);
+		final Stage stage = (Stage) anchorPane.getScene().getWindow();
+		final File file = fileChooser.showOpenDialog(stage);
 		if (file != null) {
 			System.out.println(file.getAbsolutePath());
 			txtDiaChi.setText(file.getAbsolutePath());
@@ -95,13 +102,12 @@ public class FileMoiCtrl implements Initializable {
 	}
 
 	@FXML
-	public void comboBoxChanged(ActionEvent event) {
+	public void comboBoxChanged(final ActionEvent event) {
 		// toWho.setText( toWho.getValue());
 	}
-	
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(final URL arg0, final ResourceBundle arg1) {
 		toWho.setItems(listToWho);
 	}
 

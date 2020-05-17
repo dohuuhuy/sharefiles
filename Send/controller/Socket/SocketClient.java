@@ -5,6 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Date;
+
+import javax.swing.table.DefaultTableModel;
 
 import TaiKhoan.TaiKhoanCtrl;
 
@@ -17,6 +20,7 @@ public class SocketClient implements Runnable {
 	public ObjectInputStream In;
 	public ObjectOutputStream Out;
 	public String content = "";
+
 	public SocketClient(TaiKhoanCtrl taiKhoanCtrl) throws IOException {
 		ui = taiKhoanCtrl;
 		this.serverAddr = ui.serverAddr;
@@ -44,17 +48,35 @@ public class SocketClient implements Runnable {
 				else if (msg.type.equals("login")) {
 					if (msg.content.equals("TRUE")) {
 						this.content = msg.content;
-					
+
 						System.out.println("[SERVER > Me] : Login Successful\n");
-					
 
 					} else {
-				
+
 						System.out.println("[SERVER > Me] : Login Failed\n");
 					}
-				}
+				} else if (msg.type.equals("message")) {
+					if (msg.recipient.equals(ui.username)) {
+						System.out.println("[" + msg.sender + " > Me] : " + msg.content + "\n");
+					} else {
+						System.out.println("[" + msg.sender + " > " + msg.recipient + "] : " + msg.content + "\n");
+					}
 
-			} catch (Exception ex) {
+					if (!msg.content.equals(".bye") && !msg.sender.equals(ui.username)) {
+						String msgTime = (new Date()).toString();
+
+						/*
+						 * try { hist.addMessage(msg, msgTime); DefaultTableModel table =
+						 * (DefaultTableModel) ui.historyFrame.jTable1.getModel(); table.addRow(new
+						 * Object[] { msg.sender, msg.content, "Me", msgTime }); } catch (Exception ex)
+						 * { }
+						 */
+
+					}
+				}
+			}
+
+			catch (Exception ex) {
 				keepRunning = false;
 				System.out.println("[Application > Me] : Connection Failure\n");
 				/*
@@ -78,27 +100,16 @@ public class SocketClient implements Runnable {
 		} catch (IOException ex) {
 			System.out.println("Lỗi SocketClient không thể gửi()");
 		}
-		if(t == 1) {
-			while(this.content == "");
-			if(this.content != "") return true; else return false;
+		if (t == 1) {
+			while (msg.content == "")
+				;
+			if (msg.content == "TRUE")
+				return true;
+			else if (msg.content == "FALSE") {
+				return false;
+			}
 		}
 		return true;
-	}
-
-	public void recive(Message msg) throws IOException {
-
-		Message msg1 = null;
-		try {
-			msg1 = (Message) In.readObject();
-			System.out.println("neni : " + msg1.toString());
-
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		}
-
-		return;
-
 	}
 
 	public void closeThread(Thread t) {

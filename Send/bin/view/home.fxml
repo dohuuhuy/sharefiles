@@ -161,7 +161,7 @@
                   </JFXButton>
                   <JFXButton onAction="#actionBack" prefHeight="40.0" prefWidth="46.0" text=" " />
                </children></Pane>
-            <Text fx:id="txtTenUser" layoutX="220.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.43359375">
+            <Text fx:id="txtUserName" layoutX="220.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.43359375">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font>
