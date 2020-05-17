@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
+import FileMoi.FileMoiCtrl;
 import TaiKhoan.TaiKhoanCtrl;
 
 public class SocketClient implements Runnable {
@@ -17,6 +18,7 @@ public class SocketClient implements Runnable {
 	public String serverAddr;
 	public Socket socket;
 	public TaiKhoanCtrl ui;
+	public FileMoiCtrl fMoiCtrl;
 	public ObjectInputStream In;
 	public ObjectOutputStream Out;
 	public String content = "";
@@ -55,7 +57,22 @@ public class SocketClient implements Runnable {
 
 						System.out.println("[SERVER > Me] : Login Failed\n");
 					}
-				} else if (msg.type.equals("message")) {
+				}
+				else if (msg.type.equals("newuser")) {
+					if (!msg.content.equals(ui.username)) {
+						boolean exists = false;
+						for (int i = 0; i < fMoiCtrl.listToWho.size(); i++) {
+							if (fMoiCtrl.listToWho.get(i).equals(msg.content)) {
+								exists = true;
+								break;
+							}
+						}
+						if (!exists) {
+							fMoiCtrl.listToWho.add(msg.content);
+						}
+					}
+				}
+				else if (msg.type.equals("message")) {
 					if (msg.recipient.equals(ui.username)) {
 						System.out.println("[" + msg.sender + " > Me] : " + msg.content + "\n");
 					} else {

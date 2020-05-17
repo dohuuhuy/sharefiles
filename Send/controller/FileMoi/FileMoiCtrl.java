@@ -56,7 +56,7 @@ public class FileMoiCtrl implements Initializable {
 	@FXML
 	public JFXButton btnChonTep;
 
-	ObservableList<String> listToWho = FXCollections.observableArrayList("Java", "C#", "Python");
+	public ObservableList<String> listToWho = FXCollections.observableArrayList("Java", "C#", "Python");
 
 	@FXML
 	void actionClose(final ActionEvent event) {
