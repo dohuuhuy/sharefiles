@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import TaiKhoan.TaiKhoanCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -58,16 +60,18 @@ public class HomeCtrl implements Initializable {
 	    }
 
 	@FXML
-	private Text txtTenUser;
+	public Label txtTenUser;
 
-	public void GetUser(String user) {
+	public void GetUser() {
 
-		txtTenUser.setText(user);
+		txtTenUser.setText(ui.username);
 	}
 
+	@SuppressWarnings("deprecation")
 	@FXML
 	void actionLogOut(ActionEvent event) {
 		try {
+		
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
@@ -78,6 +82,7 @@ public class HomeCtrl implements Initializable {
 		} catch (Exception e) {
 
 		}
+			ui.clientThread.stop();
 	}
 
 	@FXML
@@ -135,9 +140,11 @@ public class HomeCtrl implements Initializable {
 		paneView.getChildren().add(milkChart);
 
 	}
+	public TaiKhoanCtrl ui;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadData();
+		//GetUser();
 	}
 }

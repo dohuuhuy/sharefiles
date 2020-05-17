@@ -3,13 +3,14 @@ package FileMoi;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +57,9 @@ public class FileMoiCtrl implements Initializable {
 	@FXML
 	public JFXButton btnChonTep;
 
-	public ObservableList<String> listToWho = FXCollections.observableArrayList("Java", "C#", "Python");
+	 public ArrayList<String> ListUser = new ArrayList<String>();
+	 
+	 ObservableList<String> listToWho = FXCollections.observableArrayList(ListUser);
 
 	@FXML
 	void actionClose(final ActionEvent event) {

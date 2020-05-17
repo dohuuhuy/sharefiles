@@ -61,14 +61,14 @@ public class SocketClient implements Runnable {
 				else if (msg.type.equals("newuser")) {
 					if (!msg.content.equals(ui.username)) {
 						boolean exists = false;
-						for (int i = 0; i < fMoiCtrl.listToWho.size(); i++) {
-							if (fMoiCtrl.listToWho.get(i).equals(msg.content)) {
+						for (int i = 0; i < fMoiCtrl.ListUser.size(); i++) {
+							if (fMoiCtrl.ListUser.get(i).equals(msg.content)) {
 								exists = true;
 								break;
 							}
 						}
 						if (!exists) {
-							fMoiCtrl.listToWho.add(msg.content);
+							fMoiCtrl.ListUser.add(msg.content);
 						}
 					}
 				}
