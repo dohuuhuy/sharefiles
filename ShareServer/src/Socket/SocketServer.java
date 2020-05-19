@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 
+
+
 class ServerThread extends Thread {
 
 	public SocketServer server = null;
@@ -159,32 +161,56 @@ public class SocketServer implements Runnable {
 			clients[findClient(ID)].send(new Message("test", "SERVER", "OK", msg.sender));
 		}
 
-		else
-			{
+		else {
 			if (msg.type.equals("login")) {
-			}
-			if (findUserThread(msg.sender) == null) {
-				try {
 
-					if (db.checkLogin(msg.sender, msg.content)) {
-						System.out.println(msg.sender + msg.content);
-						clients[findClient(ID)].username = msg.sender;
-						clients[findClient(ID)].send(new Message("login", "SERVER", "TRUE", msg.sender));
-						Announce("newuser", "SERVER", msg.sender);
-						SendUserList(msg.sender);
-						System.out.println(msg.sender);
+				if (findUserThread(msg.sender) == null) {
+					try {
 
-					} else {
-						clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
-						
+						if (db.checkLogin(msg.sender, msg.content)) {
+							System.out.println(msg.sender + msg.content);
+							clients[findClient(ID)].username = msg.sender;
+							clients[findClient(ID)].send(new Message("login", "SERVER", "TRUE", msg.sender));
+							Announce("newuser", "SERVER", msg.sender);
+							SendUserList(msg.sender);
+							System.out.println(msg.sender);
+
+						} else {
+							clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
+
+						}
+					} catch (SQLException e) {
+
+						e.printStackTrace();
 					}
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
+				} else {
+					clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
 				}
-			} else {
-				clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
+			} else if (msg.type.equals("message")) {
+				if (msg.recipient.equals("All")) {
+					Announce("message", msg.sender, msg.content);
+				} else {
+					findUserThread(msg.recipient).send(new Message(msg.type, msg.sender, msg.content, msg.recipient));
+					clients[findClient(ID)].send(new Message(msg.type, msg.sender, msg.content, msg.recipient));
+				}
+			} else if (msg.type.equals("upload_req")) {
+				if (msg.recipient.equals("All")) {
+					clients[findClient(ID)]
+							.send(new Message("message", "SERVER", "Uploading to 'All' forbidden", msg.sender));
+				} else {
+					findUserThread(msg.recipient)
+							.send(new Message("upload_req", msg.sender, msg.content, msg.recipient));
+				}
+			} else if (msg.type.equals("upload_res")) {
+				if (!msg.content.equals("NO")) {
+					String IP = findUserThread(msg.sender).socket.getInetAddress().getHostAddress();
+					findUserThread(msg.recipient).send(new Message("upload_res", IP, msg.content, msg.recipient));
+				} else {
+					findUserThread(msg.recipient)
+							.send(new Message("upload_res", msg.sender, msg.content, msg.recipient));
+				}
 			}
+
 		}
 	}
 

@@ -32,7 +32,7 @@
                   <Font name="Consolas" size="15.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnSend" layoutX="77.0" layoutY="353.0" style="-fx-background-color: CornflowerBlue;" text="Gửi" textFill="WHITE">
+            <JFXButton fx:id="btnSend" layoutX="77.0" layoutY="353.0" onAction="#actionSend" style="-fx-background-color: CornflowerBlue;" text="Gửi" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </padding>
@@ -79,7 +79,7 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtDiaChi" layoutX="14.0" layoutY="509.0" prefHeight="26.0" prefWidth="347.0" />
-      <JFXTextField fx:id="txtTieuDe" layoutX="18.0" layoutY="142.0" prefHeight="26.0" prefWidth="347.0" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtTieuDe" layoutX="18.0" layoutY="142.0" prefHeight="26.0" prefWidth="347.0" promptText="6200" text="6200" unFocusColor="BLACK" />
       <JFXButton fx:id="btnChonTep" layoutX="375.0" layoutY="509.0" onAction="#actionChonTep" style="-fx-background-color: blue;" text="Chọn tệp" textFill="WHITE">
          <font>
             <Font name="Consolas" size="15.0" />

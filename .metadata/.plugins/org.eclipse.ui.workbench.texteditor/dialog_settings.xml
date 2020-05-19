@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="System.out.println("/>
+		<item key="selection" value="actionSend"/>
 		<list key="findhistory">
+			<item value="actionSend"/>
+			<item value="jTextField4"/>
 			<item value="ui.jTextArea1.append("/>
 			<item value="run"/>
 			<item value="remove"/>
@@ -21,8 +23,6 @@
 			<item value="model"/>
 			<item value="jTextField1"/>
 			<item value="localhost"/>
-			<item value="username"/>
-			<item value="filePath"/>
 		</list>
 		<list key="replacehistory">
 			<item value="System.out.println("/>
@@ -38,8 +38,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1452"/>
-		<item key="DIALOG_Y_ORIGIN" value="184"/>
+		<item key="DIALOG_X_ORIGIN" value="1181"/>
+		<item key="DIALOG_Y_ORIGIN" value="587"/>
 		<item key="DIALOG_WIDTH" value="336"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

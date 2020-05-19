@@ -173,7 +173,7 @@
                   <Image url="@../../data/image/pie_chart_30px.png" />
                </image>
             </ImageView>
-            <Label fx:id="textUserName" layoutX="213.0" layoutY="26.0" prefHeight="18.0" prefWidth="216.0">
+            <Label fx:id="txtUserName" layoutX="213.0" layoutY="26.0" prefHeight="18.0" prefWidth="216.0">
                <font>
                   <Font name="Consolas Bold Italic" size="15.0" />
                </font>

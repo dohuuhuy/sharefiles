@@ -1,0 +1,114 @@
+package FileMoi;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+
+import Socket.Message;
+import Socket.SocketClient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBoxBase;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+public class FileMoiCtrl implements Initializable {
+
+	public SocketClient client;
+
+	public Thread clientThread;
+
+	@FXML
+	public AnchorPane anchorPane;
+	@FXML
+	public ResourceBundle resources;
+
+	@FXML
+	public URL location;
+
+	@FXML
+	public JFXComboBox<String> toWho;
+
+	@FXML
+	public JFXButton btnSend;
+
+	@FXML
+	public JFXTextArea txtNoiDung;
+
+	@FXML
+	public JFXTextField txtDiaChi;
+
+	@FXML
+	public JFXButton btnChonTep;
+
+	@FXML
+	ObservableList<String> listToWho = FXCollections.observableArrayList(SocketClient.ListUser);
+
+	@FXML
+	void actionClose(final ActionEvent event) {
+		System.exit(0);
+	}
+
+	public String GetTieuDe() {
+		String a = txtTieuDe.getText();
+		return a;
+	}
+
+	@FXML
+	public JFXTextField txtTieuDe;
+
+	@FXML
+	void actionReturn(final ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnSave(final ActionEvent event) {
+
+	}
+
+	@FXML
+	void actionSend(final ActionEvent event) {
+		String content = txtNoiDung.getText();
+		String guiToi = toWho.getValue();
+		if (!content.isEmpty() && guiToi.isEmpty()) {
+			txtNoiDung.setText("");
+			var send = SocketClient.send(new Message("message", "a", content, guiToi), 2);
+		}
+	}
+
+	@FXML
+	public void actionChonTep(final ActionEvent event) {
+		final FileChooser fileChooser = new FileChooser();
+		final Stage stage = (Stage) anchorPane.getScene().getWindow();
+		final File file = fileChooser.showOpenDialog(stage);
+		if (file != null) {
+			System.out.println(file.getAbsolutePath());
+			txtDiaChi.setText(file.getAbsolutePath());
+		}
+	}
+
+	@FXML
+	public void comboBoxChanged(final ActionEvent event) {
+		txtDiaChi.setText(toWho.getValue());
+	}
+
+	@Override
+	public void initialize(final URL arg0, final ResourceBundle arg1) {
+		toWho.setItems(listToWho);
+		System.out.println(SocketClient.ListUser + "1");
+
+	}
+
+}
