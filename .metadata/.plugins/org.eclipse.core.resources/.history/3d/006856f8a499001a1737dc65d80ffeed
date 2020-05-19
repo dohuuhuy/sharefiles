@@ -80,10 +80,10 @@ public class FileMoiCtrl implements Initializable {
 		String nguoiNhan = toWho.getValue();
 		System.out.println(TaiKhoanCtrl.username);
 		String nguoiGui = TaiKhoanCtrl.username;
-	//	if (!content.isEmpty() && nguoiNhan.isEmpty()) {
+		if (!content.isEmpty() && nguoiNhan.isEmpty()) {
 			
 			SocketClient.send(new Socket.Message("message", nguoiGui, content, nguoiNhan));
-		//}
+		}
 	}
 
 	@FXML

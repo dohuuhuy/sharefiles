@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 
 public class FileMoiCtrl implements Initializable {
 
+	
+
 	@FXML
 	public AnchorPane anchorPane;
 	@FXML
@@ -73,16 +75,16 @@ public class FileMoiCtrl implements Initializable {
 
 	@FXML
 	public void actionSend(final ActionEvent event) {
-
+		
 		System.out.println("chay");
 		String tieuDe = txtTieuDe.getText();
 		String content = txtNoiDung.getText();
 		String nguoiNhan = toWho.getValue();
-		System.out.println(TaiKhoanCtrl.username);
-		String nguoiGui = TaiKhoanCtrl.username;
-	//	if (!content.isEmpty() && nguoiNhan.isEmpty()) {
-			
-			SocketClient.send(new Socket.Message("message", nguoiGui, content, nguoiNhan));
+	System.out.println(TaiKhoanCtrl.username);
+	String nguoiGui = TaiKhoanCtrl.username;
+		//if (!content.isEmpty() && guiToi.isEmpty()) {
+			//txtNoiDung.setText("");
+		 SocketClient.send(new Socket.Message("message", nguoiGui, content, nguoiNhan));
 		//}
 	}
 

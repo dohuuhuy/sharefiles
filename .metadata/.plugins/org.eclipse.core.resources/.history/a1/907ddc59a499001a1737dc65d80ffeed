@@ -73,7 +73,9 @@ public void GetUser() {
 	@FXML
 	void actionLogOut(ActionEvent event) {
 		try {
+		
 		TaiKhoanCtrl.clientThread.stop();
+		
 			((Node) event.getSource()).getScene().getWindow().hide();
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
