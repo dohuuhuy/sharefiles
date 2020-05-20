@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.Socket.Message;
+
+import Socket.SocketClient;
 import TaiKhoan.TaiKhoanCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,29 +65,22 @@ public class HomeCtrl implements Initializable {
 	@FXML
 	public Label txtUserName;
 
-public void GetUser() {
+	public void GetUser() {
 
-	txtUserName.setText(TaiKhoanCtrl.username);
-	System.out.println(TaiKhoanCtrl.username);
+		txtUserName.setText(TaiKhoanCtrl.username);
+		System.out.println(TaiKhoanCtrl.username);
 
-}
+	}
 
 	@SuppressWarnings("deprecation")
 	@FXML
 	void actionLogOut(ActionEvent event) {
 		try {
-		TaiKhoanCtrl.clientThread.stop();
-			((Node) event.getSource()).getScene().getWindow().hide();
-			Stage primaryStage = new Stage();
-			FXMLLoader loader = new FXMLLoader();
-			Pane root = loader.load(getClass().getResource("../view/Login.fxml").openStream());
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
-
+			SocketClient
+					.send(new Socket.Message("message", TaiKhoanCtrl.username, "title", ".bye", "document", "SERVER"));
+			TaiKhoanCtrl.clientThread.stop();
+		} catch (Exception ex) {
 		}
-
 	}
 
 	@FXML
@@ -104,7 +100,7 @@ public void GetUser() {
 
 	@FXML
 	void actionFileDen(ActionEvent event) {
-		loadUI("b");
+		loadUI("fileden");
 	}
 
 	@FXML
@@ -143,11 +139,9 @@ public void GetUser() {
 
 	}
 
-	
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadData();
-	GetUser();
+		GetUser();
 	}
 }

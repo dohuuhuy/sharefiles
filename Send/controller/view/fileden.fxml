@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FileMoi.FileDenCtrl">
+   <children>
+      <Pane layoutX="480.0" prefHeight="600.0" prefWidth="270.0" style="-fx-background-color: Sienna;">
+         <children>
+            <JFXButton contentDisplay="RIGHT" layoutX="222.0" onAction="#actionClose" prefHeight="40.0" prefWidth="46.0" text=" ">
+               <graphic>
+                  <ImageView fx:id="btnClose" fitHeight="24.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../data/image/shutdown_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnDelete" layoutX="49.0" layoutY="90.0" text="Xóa" />
+         </children>
+      </Pane>
+      <Label layoutX="224.0" layoutY="14.0" text="File đến">
+         <font>
+            <Font name="Consolas Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnSearch" layoutX="398.0" layoutY="85.0" style="-fx-background-color: blue;" text="Tìm " textFill="WHITE" />
+      <JFXTextField fx:id="txtSearch" layoutX="33.0" layoutY="85.0" prefHeight="26.0" prefWidth="355.0" />
+      <TableView fx:id="tableFileDen" layoutX="14.0" layoutY="142.0" prefHeight="443.0" prefWidth="456.0">
+        <columns>
+          <TableColumn fx:id="colThaoTac" prefWidth="75.0" text="#" />
+          <TableColumn fx:id="colTieuDe" prefWidth="225.6000518798828" text="Tiêu đề" />
+            <TableColumn fx:id="colNguoiGui" prefWidth="154.39996337890625" text="người gửi" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

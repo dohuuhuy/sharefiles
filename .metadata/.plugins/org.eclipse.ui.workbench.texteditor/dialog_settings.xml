@@ -6,25 +6,27 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="actionSend"/>
+		<item key="selection" value="Ctrl"/>
 		<list key="findhistory">
+			<item value="Message"/>
+			<item value="ctrl"/>
+			<item value="dashboard"/>
+			<item value="fxml"/>
+			<item value="taikhoanctr"/>
+			<item value="taikhoanctrl"/>
+			<item value="fileMoiCtrl"/>
+			<item value="filemoictrl"/>
+			<item value="socket"/>
+			<item value="Incoming"/>
+			<item value="incoming"/>
+			<item value="nguoiGui"/>
+			<item value="Email"/>
+			<item value="Student"/>
 			<item value="actionSend"/>
-			<item value="jTextField4"/>
-			<item value="ui.jTextArea1.append("/>
-			<item value="run"/>
-			<item value="remove"/>
-			<item value="wellcom"/>
-			<item value="private"/>
-			<item value="actionClose"/>
-			<item value="jList1"/>
-			<item value="txt"/>
-			<item value="findClient"/>
-			<item value="clients"/>
-			<item value="model"/>
-			<item value="jTextField1"/>
-			<item value="localhost"/>
 		</list>
 		<list key="replacehistory">
+			<item value="nguoiGui"/>
+			<item value="Files"/>
 			<item value="System.out.println("/>
 			<item value="public"/>
 			<item value="ui.txtNoiDung.appendText"/>
@@ -32,14 +34,13 @@
 			<item value="nguoiNhan"/>
 			<item value="noiDung"/>
 			<item value="loai"/>
-			<item value="nguoiGui"/>
 			<item value="userName"/>
 			<item value="//"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1181"/>
-		<item key="DIALOG_Y_ORIGIN" value="587"/>
+		<item key="DIALOG_X_ORIGIN" value="1152"/>
+		<item key="DIALOG_Y_ORIGIN" value="543"/>
 		<item key="DIALOG_WIDTH" value="336"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

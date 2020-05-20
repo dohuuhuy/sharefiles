@@ -64,7 +64,7 @@ public class TaiKhoanCtrl implements Initializable {
 				clientThread = new Thread(client);
 				clientThread.start();
 				if (!username.isEmpty() && !password.isEmpty()) {
-					var recive = client.sendLogin(new Message("login", username, password, "SERVER"), 1);
+					var recive = client.sendLogin(new Message("login", "sender", username, password, "document", "SERVER"), 1);
 					if (recive == true) {
 
 						((Node) event.getSource()).getScene().getWindow().hide();

@@ -1,0 +1,23 @@
+package Socket;
+
+import java.io.Serializable;
+
+public class Message implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    public String type, title, sender,content, recipient;
+
+    public Message(String type, String title, String sender, String content, String recipient){
+        this.type = type; 
+        this.title = title;
+        this.sender = sender; 
+        this.content = content; 
+        this.recipient = recipient;
+    }
+    
+
+    @Override
+    public String toString(){
+        return "{type='"+type+ "{title='"+title + "', sender='"+sender+"', content='"+content+"', recipient='"+recipient+"'}";
+    }
+}

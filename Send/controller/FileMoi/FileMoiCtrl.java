@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 
 public class FileMoiCtrl implements Initializable {
 
+	public static File file;
 	@FXML
 	public AnchorPane anchorPane;
 	@FXML
@@ -75,22 +77,26 @@ public class FileMoiCtrl implements Initializable {
 	public void actionSend(final ActionEvent event) {
 
 		System.out.println("chay");
-		String tieuDe = txtTieuDe.getText();
+		String sender = TaiKhoanCtrl.username;
+		String title = txtTieuDe.getText();
 		String content = txtNoiDung.getText();
-		String nguoiNhan = toWho.getValue();
+		String document =  txtDiaChi.getText(); 
+		String recipient = toWho.getValue();
 		System.out.println(TaiKhoanCtrl.username);
-		String nguoiGui = TaiKhoanCtrl.username;
-	//	if (!content.isEmpty() && nguoiNhan.isEmpty()) {
-			
-			SocketClient.send(new Socket.Message("message", nguoiGui, content, nguoiNhan));
-		//}
+	
+		if (document.isEmpty()) {			
+			SocketClient.send(new Socket.Message("message", sender, title, content, document, recipient));
+		}
+		else {
+			SocketClient.send(new Socket.Message("upload_req", sender, title, content, file.getName(), recipient));
+		}
 	}
 
 	@FXML
 	public void actionChonTep(final ActionEvent event) {
 		final FileChooser fileChooser = new FileChooser();
 		final Stage stage = (Stage) anchorPane.getScene().getWindow();
-		final File file = fileChooser.showOpenDialog(stage);
+		file = fileChooser.showOpenDialog(stage);
 		if (file != null) {
 			System.out.println(file.getAbsolutePath());
 			txtDiaChi.setText(file.getAbsolutePath());
@@ -99,7 +105,7 @@ public class FileMoiCtrl implements Initializable {
 
 	@FXML
 	public void comboBoxChanged(final ActionEvent event) {
-		txtDiaChi.setText(toWho.getValue());
+		//txtDiaChi.setText(toWho.getValue());
 	}
 
 	@Override

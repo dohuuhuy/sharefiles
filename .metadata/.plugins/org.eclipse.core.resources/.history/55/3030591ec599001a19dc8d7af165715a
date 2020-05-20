@@ -1,0 +1,44 @@
+package FileMoi;
+
+public class Files {
+    private int id;
+    private String tieuDe;
+    private String nguoiGui;
+  
+
+    public Files(int id, String tieuDe, String nguoiGui) {
+        this.id = id;
+        this.tieuDe = tieuDe;
+        this.nguoiGui = nguoiGui;
+    
+    }
+
+    public Files() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTieuDe() {
+        return tieuDe;
+    }
+
+    public void setTieuDe(String tieuDe) {
+        this.tieuDe = tieuDe;
+    }
+
+    public String getnguoiGui() {
+        return nguoiGui;
+    }
+
+    public void setnguoiGui(String nguoiGui) {
+        this.nguoiGui = nguoiGui;
+    }
+
+  
+}

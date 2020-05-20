@@ -26,12 +26,6 @@
                </graphic>
             </JFXButton>
             <JFXComboBox fx:id="toWho" layoutX="26.0" layoutY="142.0" onAction="#comboBoxChanged" prefHeight="25.0" prefWidth="213.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE" />
-            <JFXComboBox layoutX="29.0" layoutY="243.0" prefHeight="25.0" prefWidth="213.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE" />
-            <Label layoutX="27.0" layoutY="212.0" text="Danh Sách gửi tới:" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="15.0" />
-               </font>
-            </Label>
             <JFXButton fx:id="btnSend" layoutX="77.0" layoutY="353.0" onAction="#actionSend" style="-fx-background-color: CornflowerBlue;" text="Gửi" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
@@ -42,15 +36,11 @@
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </padding>
             </JFXButton>
-            <JFXButton contentDisplay="RIGHT" layoutX="3.0" onAction="#actionReturn" prefHeight="40.0" prefWidth="46.0" text=" ">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="34.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../data/image/arrow_30px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
+            <Label layoutX="26.0" layoutY="109.0" text="Gửi tới:" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Label layoutX="224.0" layoutY="14.0" text="Tạo Mới">
@@ -73,13 +63,8 @@
             <Font name="Consolas" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="507.0" layoutY="111.0" text="Gửi tới:" textFill="WHITE">
-         <font>
-            <Font name="Consolas" size="15.0" />
-         </font>
-      </Label>
       <JFXTextField fx:id="txtDiaChi" layoutX="14.0" layoutY="509.0" prefHeight="26.0" prefWidth="347.0" />
-      <JFXTextField fx:id="txtTieuDe" layoutX="18.0" layoutY="142.0" prefHeight="26.0" prefWidth="347.0" promptText="6200" text="6200" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtTieuDe" layoutX="18.0" layoutY="142.0" prefHeight="26.0" prefWidth="347.0" unFocusColor="BLACK" />
       <JFXButton fx:id="btnChonTep" layoutX="375.0" layoutY="509.0" onAction="#actionChonTep" style="-fx-background-color: blue;" text="Chọn tệp" textFill="WHITE">
          <font>
             <Font name="Consolas" size="15.0" />

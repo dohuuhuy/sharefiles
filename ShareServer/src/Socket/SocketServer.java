@@ -158,7 +158,7 @@ public class SocketServer implements Runnable {
 
 	public synchronized void handle(int ID, Message msg) {
 		if (msg.type.equals("test")) {
-			clients[findClient(ID)].send(new Message("test", "SERVER", "OK", msg.sender));
+			clients[findClient(ID)].send(new Message("test", "SERVER", "title", "OK", "document", msg.sender));
 		}
 
 		else {
@@ -167,16 +167,16 @@ public class SocketServer implements Runnable {
 				if (findUserThread(msg.sender) == null) {
 					try {
 
-						if (db.checkLogin(msg.sender, msg.content)) {
-							System.out.println(msg.sender + msg.content);
-							clients[findClient(ID)].username = msg.sender;
-							clients[findClient(ID)].send(new Message("login", "SERVER", "TRUE", msg.sender));
-							Announce("newuser", "SERVER", msg.sender);
-							SendUserList(msg.sender);
+						if (db.checkLogin(msg.title, msg.content)) {
+							System.out.println(msg.title + msg.content);
+							clients[findClient(ID)].username = msg.title;
+							clients[findClient(ID)].send(new Message("login","SERVER", "title", "TRUE","document",  msg.sender));
+							Announce("newuser", "SERVER", "title", msg.title, "document" );
+							SendUserList(msg.title);
 							System.out.println(msg.sender);
 
 						} else {
-							clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
+							clients[findClient(ID)].send(new Message("login", "SERVER", "title", "FALSE", "document",  msg.sender));
 
 						}
 					} catch (SQLException e) {
@@ -184,38 +184,38 @@ public class SocketServer implements Runnable {
 						e.printStackTrace();
 					}
 				} else {
-					clients[findClient(ID)].send(new Message("login", "SERVER", "FALSE", msg.sender));
+					clients[findClient(ID)].send(new Message("login","SERVER", "title", "FALSE","document",  msg.sender));
 				}
 			} else if (msg.type.equals("message")) {
 				if (msg.recipient.equals("All")) {
-					Announce("message", msg.sender, msg.content);
+					Announce("message",  msg.sender,msg.title, msg.content, msg.document);
 				} else {
-					findUserThread(msg.recipient).send(new Message(msg.type, msg.sender, msg.content, msg.recipient));
-					clients[findClient(ID)].send(new Message(msg.type, msg.sender, msg.content, msg.recipient));
+					findUserThread(msg.recipient).send(new Message(msg.type, msg.sender, msg.title, msg.content,msg.document, msg.recipient));
+					clients[findClient(ID)].send(new Message(msg.type,msg.sender, msg.title,  msg.content, msg.document, msg.recipient));
 				}
 			} else if (msg.type.equals("upload_req")) {
 				if (msg.recipient.equals("All")) {
 					clients[findClient(ID)]
-							.send(new Message("message", "SERVER", "Uploading to 'All' forbidden", msg.sender));
+							.send(new Message("message", "SERVER", "title", "không thể gửi file cho nhiều người","document",  msg.sender));
 				} else {
 					findUserThread(msg.recipient)
-							.send(new Message("upload_req", msg.sender, msg.content, msg.recipient));
+							.send(new Message("upload_req", msg.sender, msg.title, msg.content,msg.document, msg.recipient));
 				}
 			} else if (msg.type.equals("upload_res")) {
 				if (!msg.content.equals("NO")) {
 					String IP = findUserThread(msg.sender).socket.getInetAddress().getHostAddress();
-					findUserThread(msg.recipient).send(new Message("upload_res", IP, msg.content, msg.recipient));
+					findUserThread(msg.recipient).send(new Message("upload_res", IP ,msg.title, msg.content, msg.document, msg.recipient));
 				} else {
 					findUserThread(msg.recipient)
-							.send(new Message("upload_res", msg.sender, msg.content, msg.recipient));
+							.send(new Message("upload_res", msg.sender, msg.title, msg.content, msg.document, msg.recipient));
 				}
 			}
 
 		}
 	}
 
-	public void Announce(String type, String sender, String content) {
-		Message msg = new Message(type, sender, content, "All");
+	public void Announce(String type, String sender, String title, String content, String document) {
+		Message msg = new Message(type, sender, title, content, document, "All");
 		for (int i = 0; i < clientCount; i++) {
 			clients[i].send(msg);
 		}
@@ -223,7 +223,7 @@ public class SocketServer implements Runnable {
 
 	public void SendUserList(String toWhom) {
 		for (int i = 0; i < clientCount; i++) {
-			findUserThread(toWhom).send(new Message("newuser", "SERVER", clients[i].username, toWhom));
+			findUserThread(toWhom).send(new Message("newuser", "SERVER", "new title", clients[i].username, "document", toWhom));
 		}
 	}
 

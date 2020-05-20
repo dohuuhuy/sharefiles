@@ -139,7 +139,7 @@
    <center>
       <AnchorPane fx:id="content" prefHeight="600.0" prefWidth="466.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="115.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wellcome" wrappingWidth="98.43359375">
+            <Text layoutX="122.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wellcome" wrappingWidth="98.43359375">
                <font>
                   <Font name="Consolas" size="20.0" />
                </font>
@@ -160,7 +160,6 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#actionBack" prefHeight="40.0" prefWidth="46.0" text=" " />
                </children></Pane>
             <Pane fx:id="paneView" layoutX="8.0" layoutY="181.0" prefHeight="419.0" prefWidth="354.0" />
             <Text layoutX="171.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thống kê" wrappingWidth="98.43359375">
@@ -173,9 +172,9 @@
                   <Image url="@../../data/image/pie_chart_30px.png" />
                </image>
             </ImageView>
-            <Label fx:id="txtUserName" layoutX="213.0" layoutY="26.0" prefHeight="18.0" prefWidth="216.0">
+            <Label fx:id="txtUserName" layoutX="219.0" layoutY="21.0" prefHeight="18.0" prefWidth="216.0" text="ali fevrervev" textFill="RED">
                <font>
-                  <Font name="Consolas Bold Italic" size="15.0" />
+                  <Font name="Consolas" size="20.0" />
                </font>
             </Label>
          </children>

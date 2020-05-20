@@ -1,11 +1,19 @@
 package Socket;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+import com.Socket.Download;
+import com.Socket.Message;
+import com.Socket.Upload;
 
 import FileMoi.FileMoiCtrl;
 import TaiKhoan.TaiKhoanCtrl;
@@ -53,9 +61,9 @@ public class SocketClient implements Runnable {
 				else if (msg.type.equals("login")) {
 					if (msg.content.equals("TRUE")) {
 						this.content = msg.content;
-						
+
 						ui.btnLogin.setDisable(true);
-						
+
 						System.out.println("[SERVER > Me] : Login Successful\n");
 
 					} else {
@@ -96,6 +104,42 @@ public class SocketClient implements Runnable {
 						 */
 
 					}
+				} else if (msg.type.equals("upload_req")) {
+
+					if (JOptionPane.showConfirmDialog(ui,
+							("Accept '" + msg.document + "' from " + msg.sender + " ?")) == 0) {
+
+						JFileChooser jf = new JFileChooser();
+						jf.setSelectedFile(new File(msg.content));
+						int returnVal = jf.showSaveDialog(ui);
+
+						String saveTo = jf.getSelectedFile().getPath();
+						if (saveTo != null && returnVal == JFileChooser.APPROVE_OPTION) {
+							Download dwn = new Download(saveTo, ui);
+							Thread t = new Thread(dwn);
+							t.start();
+							
+							send(new Message("upload_res", ui.username, "title", ("" + dwn.port), "document",
+									msg.sender));
+						} else {
+							send(new Message("upload_res", ui.username, "title", "NO", "document", msg.sender));
+						}
+					} else {
+						send(new Message("upload_res", ui.username, "title", "NO", "document", msg.sender));
+					}
+				} else if (msg.type.equals("upload_res")) {
+					if (!msg.content.equals("NO")) {
+						int port = Integer.parseInt(msg.content);
+						String addr = msg.sender;
+
+						Upload upl = new Upload(addr, port, FileMoiCtrl.file, ui);
+						Thread t = new Thread(upl);
+						t.start();
+					} else {
+						System.out.println("[SERVER > Me] : " + msg.sender + " rejected file request\n");
+					}
+				} else {
+					System.out.println("[SERVER > Me] : Unknown message type\n");
 				}
 			}
 
@@ -104,14 +148,18 @@ public class SocketClient implements Runnable {
 				keepRunning = false;
 				System.out.println("[Application > Me] : Connection Failure\n" + ex);
 
-				/* for (int i = 1; i < ui.model.size(); i++) { ui.model.removeElementAt(i); } */
+				for (int i = 0; i < ListUser.size(); i++) {
+					{
+						ListUser.remove(i);
+					}
 
-				ui.clientThread.stop();
+					ui.clientThread.stop();
 
-				System.out.println("Exception SocketClient run()");
-				ex.printStackTrace();
+					System.out.println("Exception SocketClient run()");
+					ex.printStackTrace();
+				}
+
 			}
-
 		}
 	}
 
@@ -140,12 +188,16 @@ public class SocketClient implements Runnable {
 		} catch (IOException ex) {
 			System.out.println("Exception SocketClient send()");
 		}
-		if(t == 1) {
-			while(this.content == "");
-			if(this.content != "") return true; else return false;
+		if (t == 1) {
+			while (this.content == "")
+				;
+			if (this.content != "")
+				return true;
+			else
+				return false;
 		}
 		return true;
-			
+
 	}
 
 	public void closeThread(Thread t) {
