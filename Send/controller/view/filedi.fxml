@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FileMoi.FileDenCtrl">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FileMoi.FileDiCtrl">
    <children>
       <Pane layoutX="626.0" prefHeight="600.0" prefWidth="130.0" style="-fx-background-color: Sienna;">
          <children>
@@ -37,7 +37,7 @@
             <JFXButton fx:id="btnChiTiet" layoutX="29.0" layoutY="171.0" onAction="#actionChiTiet" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: DarkGoldenRod;" text="Chi tiết" textFill="WHITE" />
          </children>
       </Pane>
-      <Label layoutX="224.0" layoutY="14.0" text="File đến">
+      <Label layoutX="224.0" layoutY="14.0" text="File đi">
          <font>
             <Font name="Consolas Bold" size="20.0" />
          </font>

@@ -11,19 +11,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TaiKhoan.TaiKhoanCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TaiKhoan.TaiKhoanCtrl">
    <children>
       <Pane layoutX="550.0" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: black; -fx-background-radius: 20;">
          <children>
-            <JFXTextField focusColor="WHITE" layoutX="73.0" layoutY="200.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
+            <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="73.0" layoutY="200.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></JFXTextField>
-            <JFXPasswordField focusColor="WHITE" layoutX="73.0" layoutY="278.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="txtPassword" focusColor="WHITE" layoutX="73.0" layoutY="278.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></JFXPasswordField>
-            <JFXButton layoutX="195.0" layoutY="33.0" prefHeight="26.0" prefWidth="81.0" ripplerFill="WHITE" style="-fx-background-color: CornflowerBlue; -fx-background-radius: 5;" text="Đăng Nhập" textFill="WHITE" textOverrun="CLIP">
+            <JFXButton layoutX="195.0" layoutY="33.0" onAction="#actionDangNhap" prefHeight="26.0" prefWidth="81.0" ripplerFill="WHITE" style="-fx-background-color: CornflowerBlue; -fx-background-radius: 5;" text="Đăng Nhập" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font>
@@ -43,12 +43,12 @@
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font>
             </Label>
-            <JFXButton layoutX="173.0" layoutY="435.0" ripplerFill="WHITE" style="-fx-background-color: HotPink;" text="Sign up" textFill="WHITE" textOverrun="CLIP">
+            <JFXButton layoutX="173.0" layoutY="435.0" onAction="#SignUp" ripplerFill="WHITE" style="-fx-background-color: HotPink;" text="Đăng ký" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField focusColor="WHITE" layoutX="76.0" layoutY="361.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="txtComFirm" focusColor="WHITE" layoutX="76.0" layoutY="361.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
@@ -58,12 +58,12 @@
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="WHITE" layoutX="73.0" layoutY="123.0" prefHeight="25.0" prefWidth="239.0" styleClass="text-input" stylesheets="@../css/style.css" unFocusColor="WHITE">
+            <JFXTextField fx:id="txtPort" focusColor="WHITE" layoutX="73.0" layoutY="123.0" prefHeight="25.0" prefWidth="239.0" promptText="62000" styleClass="text-input" stylesheets="@../css/style.css" text="62000" unFocusColor="WHITE">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
             </JFXTextField>
-            <Label layoutX="73.0" layoutY="106.0" text="Email" textFill="WHITE">
+            <Label layoutX="73.0" layoutY="106.0" text="Port" textFill="WHITE">
                <font>
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font>
@@ -73,7 +73,7 @@
                   <Font name="Comic Sans MS" size="12.0" />
                </font>
             </Text>
-            <JFXButton fx:id="btnClose" layoutX="304.0" prefHeight="35.0" prefWidth="46.0" ripplerFill="WHITE" style="-fx-background-color: transparent;" text="X" textFill="WHITE" textOverrun="CLIP">
+            <JFXButton fx:id="btnClose" layoutX="304.0" onAction="#Close" prefHeight="35.0" prefWidth="46.0" ripplerFill="WHITE" style="-fx-background-color: transparent;" text="X" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
                </font>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="controller"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/jfoenix-9.0.8.jar"/>
-	<classpathentry kind="lib" path="E:/sqlite-jdbc-3.8.11.2.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="E:/jfoenix-9.0.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/sqlite-jdbc-3.8.11.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

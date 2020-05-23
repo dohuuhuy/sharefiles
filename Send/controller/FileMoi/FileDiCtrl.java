@@ -2,14 +2,11 @@ package FileMoi;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
-import Home.HomeCtrl;
 import Socket.Message;
 import Socket.SocketClient;
 import javafx.collections.FXCollections;
@@ -29,9 +26,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.Node;
 
-public class FileDenCtrl implements Initializable {
+public class FileDiCtrl implements Initializable {
 
 	@FXML
 	private AnchorPane anchorPane;
@@ -75,22 +71,19 @@ public class FileDenCtrl implements Initializable {
 	@FXML
 	private CheckBox checkAll;
 
-
-	
 	@FXML
-	ObservableList<Message> fdiList = FXCollections.observableArrayList(SocketClient.ListFileDen);
-
+	ObservableList<Message> fiList1 = FXCollections.observableArrayList(SocketClient.ListFileDi);
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// fiList = FXCollections.observableArrayList(SocketClient.ListFileDen);
+		
 
 		colTieuDe.setCellValueFactory(new PropertyValueFactory<Message, String>("title"));
-		colNguoiGui.setCellValueFactory(new PropertyValueFactory<Message, String>("sender"));
-		// colThaoTac.setCellValueFactory(new PropertyValueFactory<Message,
-		// CheckBox>("select"));
-		tableFileDen.setItems(fdiList);
-
-		System.out.println(fdiList);
+		colNguoiGui.setCellValueFactory(new PropertyValueFactory<Message, String>("recipient"));
+		//colThaoTac.setCellValueFactory(new PropertyValueFactory<Message, CheckBox>("select"));
+		tableFileDen.setItems(fiList1);
+		
+		System.out.println(fiList1);
 	}
 
 	@FXML
@@ -100,31 +93,43 @@ public class FileDenCtrl implements Initializable {
 
 	private double xOffset = 0;
 	private double yOffset = 0;
-
 	@FXML
 	void actionChiTiet(ActionEvent e) throws IOException {
-		// ((Node) e.getSource()).getScene().getWindow().hide();
-		Stage stage = new Stage();
+	//	((Node) e.getSource()).getScene().getWindow().hide();
+		Stage stage = new Stage();		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../view/chitietfileden.fxml"));
+		  loader.setLocation(getClass().getResource("../view/chitietfileden.fxml"));
+				//.load(getClass().getResource("../view/chitietfileden.fxml"));
 		Parent root = loader.load();
+		
+		root.setOnMousePressed(ev -> {
+			xOffset = ev.getSceneX();
+			yOffset = ev.getSceneY();
+		});
+
+		root.setOnMouseDragged(ev -> {
+			stage.setX(ev.getScreenX() - xOffset);
+			stage.setY(ev.getScreenY() - yOffset);
+		});
+		
 		ChiTietFileDen controller = loader.getController();
-		Message selected = tableFileDen.getSelectionModel().getSelectedItem();
-		controller.setFile(selected);
+        Message selected = tableFileDen.getSelectionModel().getSelectedItem();
+        controller.setFile(selected);
+		stage.initStyle(StageStyle.TRANSPARENT);
 		Scene scene = new Scene(root);
 		scene.setFill(Color.TRANSPARENT);
 		stage.setScene(scene);
 		stage.show();
-	}
+    }
 
 	@FXML
 	void actionClose(ActionEvent event) {
-		System.exit(0);
+	System.exit(0);
 	}
 
 	@FXML
 	void actionDocHet(ActionEvent event) {
-
+	
 	}
 
 	@FXML

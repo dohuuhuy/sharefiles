@@ -1,14 +1,18 @@
 package FileMoi;
 
+import javafx.scene.control.CheckBox;
+
 public class Files {
 	private int id;
 	private String tieuDe;
 	private String nguoiGui;
+	private CheckBox select;
 
 	public Files(int id, String tieuDe, String nguoiGui) {
 		this.id = id;
 		this.tieuDe = tieuDe;
 		this.nguoiGui = nguoiGui;
+		this.select = new CheckBox();
 
 	}
 
@@ -24,7 +28,7 @@ public class Files {
 	}
 
 	public String getTieuDe() {
-		System.out.println("123");
+
 		return tieuDe;
 	}
 
@@ -33,12 +37,20 @@ public class Files {
 	}
 
 	public String getNguoiGui() {
-		System.out.println("456");
+
 		return nguoiGui;
 	}
 
 	public void setNguoiGui(String nguoiGui) {
 		this.nguoiGui = nguoiGui;
 	}
+ 
+	public CheckBox getSelect() {
 
+		return select;
+	}
+
+	public void setSelect(CheckBox select) {
+		this.select = select;
+	}
 }

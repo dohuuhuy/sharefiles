@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;Send/controller/Socket&apos;&#x0D;&#x0A;- Original project: &apos;jMessenger&apos;&#x0D;&#x0A;- Destination element: &apos;Send/controller/Socket&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.Socket.Download.java&#x0D;&#x0A;     com.Socket.Upload.java" description="Copy compilation units" destination="=Send/controller&lt;Socket" element1="/src&lt;com.Socket{Download.java" element2="/src&lt;com.Socket{Upload.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1589789132633" units="2" version="1.0"/>
-</session>

@@ -1,12 +1,14 @@
 package Home;
 
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.Socket.Message;
-
+import FileMoi.FileDenCtrl;
+import Socket.Message;
 import Socket.SocketClient;
+import TaiKhoan.DangNhap;
 import TaiKhoan.TaiKhoanCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +24,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class HomeCtrl implements Initializable {
 
@@ -32,6 +35,8 @@ public class HomeCtrl implements Initializable {
 
 	@FXML
 	public URL location;
+	@FXML
+	public Button btnHome;
 
 	@FXML
 	public BorderPane body;
@@ -43,23 +48,13 @@ public class HomeCtrl implements Initializable {
 	public Pane paneView;
 
 	@FXML
-	void actionClose(ActionEvent event) {
+	public void actionClose(ActionEvent event) {
 		System.exit(0);
 	}
 
 	@FXML
-	void actionBack(ActionEvent event) {
-		try {
-			((Node) event.getSource()).getScene().getWindow().hide();
-			Stage primaryStage = new Stage();
-			FXMLLoader loader = new FXMLLoader();
-			Pane root = loader.load(getClass().getResource("../view/home.fxml").openStream());
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
+	public void actionBack(ActionEvent event) {
 
-		}
 	}
 
 	@FXML
@@ -74,32 +69,36 @@ public class HomeCtrl implements Initializable {
 
 	@SuppressWarnings("deprecation")
 	@FXML
-	void actionLogOut(ActionEvent event) {
+	public void actionLogOut(ActionEvent event) {
 		try {
 			SocketClient
 					.send(new Socket.Message("message", TaiKhoanCtrl.username, "title", ".bye", "document", "SERVER"));
 			TaiKhoanCtrl.clientThread.stop();
+			((Node) event.getSource()).getScene().getWindow().hide();
+			Stage stage = new Stage();
+			DangNhap dangNhap = new DangNhap();
+			dangNhap.start(stage);
 		} catch (Exception ex) {
 		}
 	}
 
 	@FXML
-	void actionChinhSach(ActionEvent event) {
-
+	public void actionChinhSach(ActionEvent event) {
+		loadUI("chinhsach");
 	}
 
 	@FXML
-	void actionFileDi(ActionEvent event) {
-		loadUI("c");
+	public void actionFileDi(ActionEvent event) {
+		loadUI("filedi");
 	}
 
 	@FXML
-	void actionFileNhap(ActionEvent event) {
-
+	public void actionFileNhap(ActionEvent event) {
+		loadUI("filenhap");
 	}
 
 	@FXML
-	void actionFileDen(ActionEvent event) {
+	public void actionFileDen(ActionEvent event) {
 		loadUI("fileden");
 	}
 
@@ -109,12 +108,12 @@ public class HomeCtrl implements Initializable {
 	}
 
 	@FXML
-	void actionHuongDan(ActionEvent event) {
-
+	public void actionHuongDan(ActionEvent event) {
+		loadUI("huongdan");
 	}
 
 	@FXML
-	void actionTaoMoi(ActionEvent event) {
+	public void actionTaoMoi(ActionEvent event) {
 		loadUI("filemoi");
 	}
 
@@ -127,12 +126,18 @@ public class HomeCtrl implements Initializable {
 		}
 		body.setCenter(root);
 	}
+	/*
+	 * public ObservableList<Message> fdiList =
+	 * FXCollections.observableArrayList(SocketClient.ListFileDi); public
+	 * ObservableList<Message> fdenList =
+	 * FXCollections.observableArrayList(SocketClient.ListFileDen);
+	 */
 
 	public void loadData() {
 		paneView.getChildren().clear();
 		ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
-		list.add(new PieChart.Data("File đến", 7));
-		list.add(new PieChart.Data("File đi", 2));
+		list.add(new PieChart.Data("File đến", SocketClient.ListFileDen.size()));
+		list.add(new PieChart.Data("File đi", SocketClient.ListFileDi.size()));
 		list.add(new PieChart.Data("File nháp", 1));
 		PieChart milkChart = new PieChart(list);
 		paneView.getChildren().add(milkChart);

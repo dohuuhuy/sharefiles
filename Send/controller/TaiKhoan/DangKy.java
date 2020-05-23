@@ -37,7 +37,7 @@ public class DangKy extends Application {
  
         
 	    Scene scene = new Scene(root);
-      //  root.getStylesheets().add(DangNhap.class.getResource("").toExternalForm());
+      //  root.getStylesheets().add(Home.class.getResource("").toExternalForm());
 	    scene.setFill(Color.TRANSPARENT); 
 	    stage.setScene(scene);
 	

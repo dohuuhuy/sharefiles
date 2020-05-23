@@ -7,13 +7,11 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import com.Socket.Download;
-import com.Socket.Message;
-import com.Socket.Upload;
 
 import FileMoi.FileMoiCtrl;
 import TaiKhoan.TaiKhoanCtrl;
@@ -29,6 +27,8 @@ public class SocketClient implements Runnable {
 	public static ObjectOutputStream Out;
 	public String content = "";
 	public static ArrayList<String> ListUser = new ArrayList<String>();
+	public static ArrayList<Message> ListFileDen = new ArrayList<Message>();
+	public static ArrayList<Message> ListFileDi = new ArrayList<Message>();
 
 	public String CheckLogin = "";
 
@@ -38,7 +38,6 @@ public class SocketClient implements Runnable {
 		this.serverAddr = ui.serverAddr;
 		this.port = ui.port;
 		socket = new Socket(InetAddress.getByName(serverAddr), port);
-
 		Out = new ObjectOutputStream(socket.getOutputStream());
 		Out.flush();
 		In = new ObjectInputStream(socket.getInputStream());
@@ -68,7 +67,17 @@ public class SocketClient implements Runnable {
 
 					} else {
 						ui.btnLogin.setDisable(false);
-						System.out.println("[SERVER > Me] : Login Failed\n");
+						JOptionPane.showMessageDialog(null, "Đăng nhập thất bại");
+
+					}
+					System.out.println("[SERVER > Me] : Login Failed\n");
+
+				} else if (msg.type.equals("signup")) {
+					if (msg.content.equals("TRUE")) {
+
+						System.out.println("[SERVER > Me] : Singup Successful\n");
+					} else {
+						System.out.println("[SERVER > Me] : Signup Failed\n");
 					}
 
 				} else if (msg.type.equals("newuser")) {
@@ -87,47 +96,60 @@ public class SocketClient implements Runnable {
 					}
 
 				} else if (msg.type.equals("message")) {
+					String msgTime = (new Date()).toString();
 					if (msg.recipient.equals(ui.username)) {
 						System.out.println("[" + msg.sender + " > Me] : " + msg.content + "\n");
+
+						ListFileDen.add(msg);
+						System.out.println(ListFileDen.size());
+
 					} else {
 						System.out.println("[" + msg.sender + " > " + msg.recipient + "] : " + msg.content + "\n");
-					}
-
-					if (!msg.content.equals(".bye") && !msg.sender.equals(ui.username)) {
-						// String msgTime = (new Date()).toString();
-
-						/*
-						 * try { hist.addMessage(msg, msgTime); DefaultTableModel table =
-						 * (DefaultTableModel) ui.historyFrame.jTable1.getModel(); table.addRow(new
-						 * Object[] { msg.sender, msg.content, "Me", msgTime }); } catch (Exception ex)
-						 * { }
-						 */
+						ListFileDi.add(msg);
+						System.out.println(ListFileDi);
 
 					}
+
 				} else if (msg.type.equals("upload_req")) {
+					if (msg.recipient.equals(ui.username)) {
+						System.out.println("[" + msg.sender + " > Me] : " + msg.content + "\n");
 
-					if (JOptionPane.showConfirmDialog(ui,
+						ListFileDen.add(msg);
+						Collections.reverse(ListFileDen);
+						System.out.println(ListFileDen.size());
+
+					} else {
+						System.out.println("[" + msg.sender + " > " + msg.recipient + "] : " + msg.content + "\n");
+						ListFileDi.add(msg);
+						Collections.reverse(ListFileDi);
+						System.out.println(ListFileDi);
+
+					}
+					if (JOptionPane.showConfirmDialog(null,
 							("Accept '" + msg.document + "' from " + msg.sender + " ?")) == 0) {
 
 						JFileChooser jf = new JFileChooser();
-						jf.setSelectedFile(new File(msg.content));
-						int returnVal = jf.showSaveDialog(ui);
+						jf.setSelectedFile(new File(msg.document));
+						int returnVal = jf.showSaveDialog(jf);
 
 						String saveTo = jf.getSelectedFile().getPath();
 						if (saveTo != null && returnVal == JFileChooser.APPROVE_OPTION) {
 							Download dwn = new Download(saveTo, ui);
 							Thread t = new Thread(dwn);
 							t.start();
-							
-							send(new Message("upload_res", ui.username, "title", ("" + dwn.port), "document",
+
+							send(new Message("upload_res", ui.username, "tittle", ("" + dwn.port), "document",
 									msg.sender));
+
 						} else {
-							send(new Message("upload_res", ui.username, "title", "NO", "document", msg.sender));
+							send(new Message("upload_res", ui.username, "tittle", "NO", "document", msg.sender));
 						}
 					} else {
-						send(new Message("upload_res", ui.username, "title", "NO", "document", msg.sender));
+						send(new Message("upload_res", ui.username, "tittle", "NO", "document", msg.sender));
 					}
+
 				} else if (msg.type.equals("upload_res")) {
+
 					if (!msg.content.equals("NO")) {
 						int port = Integer.parseInt(msg.content);
 						String addr = msg.sender;
@@ -141,9 +163,8 @@ public class SocketClient implements Runnable {
 				} else {
 					System.out.println("[SERVER > Me] : Unknown message type\n");
 				}
-			}
 
-			catch (Exception ex) {
+			} catch (Exception ex) {
 
 				keepRunning = false;
 				System.out.println("[Application > Me] : Connection Failure\n" + ex);
@@ -161,6 +182,7 @@ public class SocketClient implements Runnable {
 
 			}
 		}
+
 	}
 
 	public static void senddemo() {
@@ -179,7 +201,7 @@ public class SocketClient implements Runnable {
 		}
 	}
 
-	public boolean sendLogin(Message msg, int t) {
+	public boolean sendLogin(Message msg) {
 		try {
 			Out.writeObject(msg);
 			Out.flush();
@@ -187,14 +209,6 @@ public class SocketClient implements Runnable {
 
 		} catch (IOException ex) {
 			System.out.println("Exception SocketClient send()");
-		}
-		if (t == 1) {
-			while (this.content == "")
-				;
-			if (this.content != "")
-				return true;
-			else
-				return false;
 		}
 		return true;
 
